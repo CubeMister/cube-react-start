@@ -1,20 +1,12 @@
 import colors from 'colors';
-import Koa from 'koa';
-import Static from 'koa-static';
-import convert from 'koa-convert';
+import webpack from 'webpack';
+import webpackDevServer from 'webpack-dev-server';
+import devConfig from './webpack.dev.config';
+import {WEBPACK_DEV_PORT, WEBPACK_DEV_HOST} from './settings';
 
-const PORT = 3000;
-const app = new Koa();
+const compile = webpack(devConfig);
+const app = new webpackDevServer(compile, devConfig.devServer);
 
-app.use(async (ctx, next) => {
-  const start = new Date();
-  await next();
-  const ms = new Date() - start;
-  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
-  ctx.body = `${ctx.method} ${ctx.url} - ${ms}ms`;
-});
-
-app.listen(PORT, ()=> {
-	console.log(colors.green(`Listen To: `));
-	console.log(colors.yellow(`http://localhost:${PORT}/`));
+app.listen(WEBPACK_DEV_PORT, ()=> {
+	console.log(colors.yellow(`webpack-dev-server: ${WEBPACK_DEV_HOST}`));
 });
