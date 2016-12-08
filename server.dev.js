@@ -8,5 +8,5 @@ const compile = webpack(devConfig);
 const app = new webpackDevServer(compile, devConfig.devServer);
 
 app.listen(WEBPACK_DEV_PORT, ()=> {
-	console.log(colors.yellow(`webpack-dev-server: ${WEBPACK_DEV_HOST}`));
+  console.log(colors.yellow(`webpack-dev-server: ${WEBPACK_DEV_HOST}`));
 });

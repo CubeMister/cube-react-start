@@ -12,7 +12,7 @@ export default class MyComponent extends React.Component {
   render() {
     return (
         <div>
-        <AppBar title="Title" />
+        <AppBar title="aaa" />
         </div>
     );
   }        
